@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGym.BLL", "eGym.BLL\eGym.BLL.csproj", "{E8A7D86F-1ED9-46FE-B20F-EE88AA4B3792}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGym.DAL", "eGym.DAL\eGym.DAL.csproj", "{AEA054FC-4B36-4B4A-83D7-F22203246FDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGym.Domain", "eGym.Domain\eGym.Domain.csproj", "{3CE90733-5AF2-408C-9A78-6EE03E82729C}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8A7D86F-1ED9-46FE-B20F-EE88AA4B3792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A7D86F-1ED9-46FE-B20F-EE88AA4B3792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A7D86F-1ED9-46FE-B20F-EE88AA4B3792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A7D86F-1ED9-46FE-B20F-EE88AA4B3792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEA054FC-4B36-4B4A-83D7-F22203246FDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA054FC-4B36-4B4A-83D7-F22203246FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA054FC-4B36-4B4A-83D7-F22203246FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA054FC-4B36-4B4A-83D7-F22203246FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE90733-5AF2-408C-9A78-6EE03E82729C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE90733-5AF2-408C-9A78-6EE03E82729C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE90733-5AF2-408C-9A78-6EE03E82729C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE90733-5AF2-408C-9A78-6EE03E82729C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
