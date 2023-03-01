@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGym.DAL", "eGym.DAL\eGym.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGym.Domain", "eGym.Domain\eGym.Domain.csproj", "{3CE90733-5AF2-408C-9A78-6EE03E82729C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eGym.WebAPI", "eGym.WebAPI\eGym.WebAPI.csproj", "{CF3BC248-C9C6-4FCA-8020-DB1016B31061}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3CE90733-5AF2-408C-9A78-6EE03E82729C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CE90733-5AF2-408C-9A78-6EE03E82729C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CE90733-5AF2-408C-9A78-6EE03E82729C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3BC248-C9C6-4FCA-8020-DB1016B31061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3BC248-C9C6-4FCA-8020-DB1016B31061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3BC248-C9C6-4FCA-8020-DB1016B31061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3BC248-C9C6-4FCA-8020-DB1016B31061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
