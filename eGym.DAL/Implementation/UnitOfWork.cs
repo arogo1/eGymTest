@@ -12,11 +12,15 @@ public class UnitOfWork : IUnitOfWork
         Accounts = new AccountRepository(_context);
         Employees = new EmployeeRepository(_context);
         Feedbacks = new FeedbackRepository(_context);
+        Diets = new DietRepository(_context);
+        Reservations = new ReservationRepository(_context);
     }
 
     public IAccountRepository Accounts { get; private set; }
     public IEmployeeRepository Employees { get; private set; }
     public IFeedbackRepository Feedbacks { get; private set; }
+    public IDietRepository Diets { get; private set; }
+    public IReservationRepository Reservations { get; private set; }
 
     public int Complete()
     {

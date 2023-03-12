@@ -1,9 +1,8 @@
-﻿namespace eGym.DAL;
+﻿using eGym.Domain;
 
-public class IReservationRepository
+namespace eGym.DAL;
+
+public interface IReservationRepository : IGenericRepository<Reservation>
 {
-	public IReservationRepository()
-	{
-	}
 }
 
