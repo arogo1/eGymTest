@@ -1,6 +1,7 @@
-﻿namespace eGym.DAL;
+﻿using eGym.Domain;
 
-public interface IPaymentRepository
+namespace eGym.DAL;
+
+public interface IPaymentRepository : IGenericRepository<Payment>
 {
 }
-

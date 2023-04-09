@@ -7,6 +7,7 @@ public interface IUnitOfWork : IDisposable
     IFeedbackRepository Feedbacks { get; }
     IDietRepository Diets { get; }
     IReservationRepository Reservations { get; }
+    IPaymentRepository Payments { get; }
 
     int Complete();
 }

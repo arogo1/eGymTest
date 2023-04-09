@@ -2,9 +2,9 @@
 
 public class UpdateReservationRequest
 {
-    public DateTime From { get; set; }
-    public DateTime To { get; set; }
+    public DateTime? From { get; set; }
+    public DateTime? To { get; set; }
     public string? Description { get; set; }
-    public int EmployeeId { get; set; }
+    public int? EmployeeId { get; set; }
 }
 

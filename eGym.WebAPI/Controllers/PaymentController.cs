@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eGym.BLL;
+using eGym.BLL.Models.Requests;
+using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
@@ -6,16 +8,19 @@ namespace eGym.WebAPI.Controllers;
 [Route("[controller]")]
 public class PaymentController : ControllerBase
 {
-    public PaymentController()
-    {
+    private readonly IPaymentService _paymentService;
 
+    public PaymentController(IPaymentService paymentService)
+    {
+        _paymentService = paymentService;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetById(int id)
+    public async Task<IActionResult> GetWhere()
     {
         try
         {
+            
             return Ok();
         }
         catch (Exception ex)
@@ -51,10 +56,12 @@ public class PaymentController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create()
+    public async Task<IActionResult> Create(PaymentRequest request)
     {
         try
         {
+            await _paymentService.Create(request);
+
             return Accepted();
         }
         catch (Exception ex)

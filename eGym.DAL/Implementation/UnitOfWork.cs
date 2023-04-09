@@ -14,6 +14,7 @@ public class UnitOfWork : IUnitOfWork
         Feedbacks = new FeedbackRepository(_context);
         Diets = new DietRepository(_context);
         Reservations = new ReservationRepository(_context);
+        Payments = new PaymentRepository(_context);
     }
 
     public IAccountRepository Accounts { get; private set; }
@@ -21,6 +22,7 @@ public class UnitOfWork : IUnitOfWork
     public IFeedbackRepository Feedbacks { get; private set; }
     public IDietRepository Diets { get; private set; }
     public IReservationRepository Reservations { get; private set; }
+    public IPaymentRepository Payments { get; private set; }
 
     public int Complete()
     {

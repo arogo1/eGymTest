@@ -13,26 +13,33 @@ public class Mapper : Profile
         CreateMap<AccountDTO, Account>();
         CreateMap<Account, AccountDTO>();
         CreateMap<CreateAccountRequest, Account>();
-        CreateMap<UpdateAccountRequest, AccountDTO>();
+        CreateMap<UpdateAccountRequest, AccountDTO>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<EmployeeDTO, Employee>();
         CreateMap<Employee, EmployeeDTO>();
         CreateMap<CreateEmployeeRequest, Employee>();
-        CreateMap<UpdateAccountRequest, EmployeeDTO>();
+        CreateMap<UpdateAccountRequest, EmployeeDTO>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<FeedbackDTO, Feedback>();
         CreateMap<Feedback, FeedbackDTO>();
         CreateMap<CreateFeedbackRequest, Feedback>();
-        CreateMap<UpdateFeedbackRequest, FeedbackDTO>();
+        CreateMap<UpdateFeedbackRequest, FeedbackDTO>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<DietDTO, Diet>();
         CreateMap<Diet, DietDTO>();
         CreateMap<CreateDietRequest, Diet>();
-        CreateMap<UpdateDietRequest, DietDTO>();
+        CreateMap<UpdateDietRequest, DietDTO>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
         CreateMap<ReservationDTO, Reservation>();
         CreateMap<Reservation, ReservationDTO>();
         CreateMap<CreateReservationRequest, Reservation>();
-        CreateMap<UpdateReservationRequest, ReservationDTO>();
+        CreateMap<UpdateReservationRequest, ReservationDTO>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<PaymentRequest, Payment>();
     }
 }
