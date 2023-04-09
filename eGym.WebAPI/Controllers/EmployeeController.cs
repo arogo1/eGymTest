@@ -1,10 +1,12 @@
 ﻿using eGym.BLL;
 using eGym.BLL.Implementation;
 using eGym.BLL.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class EmployeeController : ControllerBase
@@ -101,6 +103,29 @@ public class EmployeeController : ControllerBase
         {
             throw ex;
         }
+    }
+
+    [HttpPost]
+    [Route("login")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
+    {
+        try
+        {
+            var result = await _employeeService.Login(request.Username, request.Password);
+
+            if (result == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+
     }
 }
 

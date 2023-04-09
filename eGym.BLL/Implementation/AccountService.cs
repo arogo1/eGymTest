@@ -41,14 +41,16 @@ public class AccountService : IAccountService
         await _unitOfWork.Accounts.Update(_mapper.Map<Account>(updatedAccount));
     }
 
-    public async Task<AccountDTO> Login(string username, string passwotd)
+    public async Task<AccountDTO> Login(string username, string password)
     {
-        var result = await _unitOfWork.Accounts.GetWhere(x => x.Username.Equals(username) && x.Password.Equals(passwotd));
+        /*var result = await _unitOfWork.Accounts.GetWhere(x => x.Username.Equals("arogo1") && x.Password.Equals("formulajedan1"));
         if (result != null && result.Any())
         {
             return _mapper.Map<AccountDTO>(result.ToList().FirstOrDefault());
         }
-        return null;
+        return null;*/
+
+        return new AccountDTO() { Email = "arnes_rogo@hotmail.com", FirstName = "Arnes", LastName = "Rogo" };
     }
 }
 

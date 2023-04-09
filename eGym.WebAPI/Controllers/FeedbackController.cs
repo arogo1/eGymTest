@@ -1,12 +1,14 @@
 ﻿using eGym.BLL;
 using eGym.BLL.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
-public class FeedbackController : Controller
+public class FeedbackController : ControllerBase
 {
     private readonly IFeedbackService _feedbackService;
 

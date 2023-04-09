@@ -8,6 +8,7 @@ public interface IUnitOfWork : IDisposable
     IDietRepository Diets { get; }
     IReservationRepository Reservations { get; }
     IPaymentRepository Payments { get; }
+    ITrainingRepository Trainings { get; }
 
     int Complete();
 }

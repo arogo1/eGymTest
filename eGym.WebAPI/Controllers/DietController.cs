@@ -1,9 +1,11 @@
 ﻿using eGym.BLL;
 using eGym.BLL.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class DietController : ControllerBase
@@ -97,14 +99,14 @@ public class DietController : ControllerBase
 
             if(account == null)
             {
-                return BadRequest("Account with provided id doens't exist");
+                return BadRequest("Account with provided id doesn't exist");
             }
 
             var diet = await _dietService.GetById(request.DietId);
 
             if (account == null)
             {
-                return BadRequest("Diet with provided id doens't exist");
+                return BadRequest("Diet with provided id doesn't exist");
             }
 
             await _dietService.Update(request, diet);
@@ -126,7 +128,7 @@ public class DietController : ControllerBase
 
             if (account == null)
             {
-                return BadRequest("Account with provided id doens't exist");
+                return BadRequest("Account with provided id doesn't exist");
             }
 
             await _dietService.Create(request);

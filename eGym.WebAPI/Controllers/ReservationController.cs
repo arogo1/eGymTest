@@ -1,9 +1,11 @@
 ﻿using eGym.BLL;
 using eGym.BLL.Models.Requests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class ReservationController : ControllerBase

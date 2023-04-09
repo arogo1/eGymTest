@@ -25,6 +25,8 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IFeedbackService, FeedbackService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IDietService, DietService>();
+builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<ITrainingService, TraningService>();
 
 //DAL
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -34,6 +36,7 @@ builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IDietRepository, DietRepository>();
 builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+builder.Services.AddScoped<ITrainingRepository, TrainingRepository>();
 builder.Services.AddDbContext<DataBaseContext>(options =>
     options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DataBaseConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
@@ -54,6 +57,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
