@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Controllers;
 
-[Authorize(Roles = "Admin,Employee")]
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class AccountController : ControllerBase
@@ -42,7 +42,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpDelete]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Employee,Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         try
@@ -91,7 +91,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public async Task<IActionResult> Create([FromBody] CreateAccountRequest request)
     {
         try

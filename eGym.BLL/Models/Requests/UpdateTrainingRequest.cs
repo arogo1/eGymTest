@@ -2,5 +2,6 @@
 
 public class UpdateTrainingRequest : CreateTrainingRequest
 {
-    public int TrainingId { get; set; }
+    public DayOfWeek? Day { get; set; }
+    public string? Description { get; set; }
 }

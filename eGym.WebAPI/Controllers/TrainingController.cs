@@ -94,25 +94,18 @@ public class TrainingController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(UpdateTrainingRequest request, int accountId)
+    public async Task<IActionResult> Update(UpdateTrainingRequest request, int trainingId)
     {
         try
         {
-            var account = await _accountService.GetById(accountId);
+            var training = await _trainingService.GetById(trainingId);
 
-            if (account == null)
-            {
-                return BadRequest("Account with provided id doesn't exist");
-            }
-
-            var diet = await _trainingService.GetById(request.TrainingId);
-
-            if (account == null)
+            if (training == null)
             {
                 return BadRequest("Training with provided id doesn't exist");
             }
 
-            await _trainingService.Update(request, diet);
+            await _trainingService.Update(request, training);
 
             return Accepted();
         }

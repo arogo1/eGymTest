@@ -11,6 +11,12 @@ public class DataBaseContext : DbContext
     {
     }
 
-    public DbSet<Account> Accounts { get; set; }
+    public DbSet<Account> Account { get; set; }
+    public DbSet<Employee> Employee { get; set; }
+    public DbSet<Diet> Diet { get; set; }
+    public DbSet<Payment> Payment { get; set; }
+    public DbSet<Reservation> Reservation { get; set; }
+    public DbSet<Training> Training { get; set; }
+    public DbSet<Feedback> Feedback { get; set; }
 }
 

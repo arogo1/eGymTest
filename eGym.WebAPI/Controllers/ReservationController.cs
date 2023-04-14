@@ -195,7 +195,7 @@ public class ReservationController : ControllerBase
             }
 
             var employee = await _employeeService.GetById(request.EmployeeId);
-            if (account == null)
+            if (employee == null)
             {
                 return BadRequest("Employee with provided id doesn't exist");
             }

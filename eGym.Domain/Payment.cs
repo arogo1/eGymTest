@@ -5,6 +5,8 @@ namespace eGym.Domain;
 
 public class Payment
 {
+    public int PaymentId { get; set; }
+
     public string CardNumber { get; set; }
 
     public DateTime ExpireDate { get; set; }

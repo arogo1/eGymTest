@@ -91,20 +91,13 @@ public class DietController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateDietRequest request, int accountId)
+    public async Task<IActionResult> Update([FromBody] UpdateDietRequest request, int dietId)
     {
         try
         {
-            var account = await _accountService.GetById(accountId);
+            var diet = await _dietService.GetById(dietId);
 
-            if(account == null)
-            {
-                return BadRequest("Account with provided id doesn't exist");
-            }
-
-            var diet = await _dietService.GetById(request.DietId);
-
-            if (account == null)
+            if (diet == null)
             {
                 return BadRequest("Diet with provided id doesn't exist");
             }
