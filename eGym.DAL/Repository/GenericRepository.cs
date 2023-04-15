@@ -30,8 +30,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public async Task Update(T obj)
     {
-        _context.Set<T>().Attach(obj);
-        _context.Entry(obj).State = EntityState.Modified;
+        _context.Set<T>().Update(obj);
         await _context.SaveChangesAsync();
     }
 

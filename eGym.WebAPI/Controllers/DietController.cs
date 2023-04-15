@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Employee")]
 [ApiController]
 [Route("[controller]")]
 public class DietController : ControllerBase

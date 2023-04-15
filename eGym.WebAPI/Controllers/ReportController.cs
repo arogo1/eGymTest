@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin")]
 [ApiController]
 [Route("[controller]")]
 public class ReportController : ControllerBase

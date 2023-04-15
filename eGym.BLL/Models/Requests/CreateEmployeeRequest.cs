@@ -23,5 +23,10 @@ public class CreateEmployeeRequest
     [DataType(DataType.EmailAddress)]
     [EmailAddress]
     public string Email { get; set; }
+
+    [Required(ErrorMessage = "You have to provide role")]
+    public Role Role { get; set; }
+
+    public DateTime BirthDate { get; set; }
 }
 

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin,Employee")]
 [ApiController]
 [Route("[controller]")]
 public class EmployeeController : ControllerBase
@@ -43,6 +43,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpDelete]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
     {
         try
@@ -91,6 +92,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([FromBody] CreateEmployeeRequest request)
     {
         try
@@ -103,29 +105,6 @@ public class EmployeeController : ControllerBase
         {
             throw ex;
         }
-    }
-
-    [HttpPost]
-    [Route("login")]
-    [AllowAnonymous]
-    public async Task<IActionResult> Login([FromBody] LoginRequest request)
-    {
-        try
-        {
-            var result = await _employeeService.Login(request.Username, request.Password);
-
-            if (result == null)
-            {
-                return Unauthorized();
-            }
-
-            return Ok(result);
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-
     }
 }
 

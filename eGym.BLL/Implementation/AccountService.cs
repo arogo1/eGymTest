@@ -32,7 +32,9 @@ public class AccountService : IAccountService
 
     public async Task Create(CreateAccountRequest request)
     {
-        await _unitOfWork.Accounts.Insert(_mapper.Map<Account>(request));
+        var account = _mapper.Map<Account>(request);
+        account.Role = 2;
+        await _unitOfWork.Accounts.Insert(account);
     }
 
     public async Task Update(UpdateAccountRequest request, AccountDTO account)
@@ -43,14 +45,12 @@ public class AccountService : IAccountService
 
     public async Task<AccountDTO> Login(string username, string password)
     {
-        /*var result = await _unitOfWork.Accounts.GetWhere(x => x.Username.Equals("arogo1") && x.Password.Equals("formulajedan1"));
+        var result = await _unitOfWork.Accounts.GetWhere(x => x.Username.Equals(username) && x.Password.Equals(password));
         if (result != null && result.Any())
         {
             return _mapper.Map<AccountDTO>(result.ToList().FirstOrDefault());
         }
-        return null;*/
-
-        return new AccountDTO() { Email = "arnes_rogo@hotmail.com", FirstName = "Arnes", LastName = "Rogo" };
+        return null;
     }
 }
 

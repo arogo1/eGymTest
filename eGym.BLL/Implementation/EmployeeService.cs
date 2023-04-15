@@ -41,14 +41,12 @@ public class EmployeeService : IEmployeeService
 
     public async Task<EmployeeDTO> Login(string username, string password)
     {
-        /*var result = await _unitOfWork.Employees.GetWhere(x => x.Username.Equals("arogo1") && x.Password.Equals("formulajedan1"));
+        var result = await _unitOfWork.Employees.GetWhere(x => x.Username.Equals(username) && x.Password.Equals(password));
         if (result != null && result.Any())
         {
             return _mapper.Map<EmployeeDTO>(result.ToList().FirstOrDefault());
         }
-        return null;*/
-
-        return new EmployeeDTO() { LastName = "Rogo" };
+        return null;
     }
 }
 
