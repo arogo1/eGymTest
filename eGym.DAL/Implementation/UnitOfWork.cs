@@ -25,6 +25,7 @@ public class UnitOfWork : IUnitOfWork
     public IReservationRepository Reservations { get; private set; }
     public IPaymentRepository Payments { get; private set; }
     public ITrainingRepository Trainings { get; private set; }
+    public IServiceRepository Services { get; private set; }
 
     public int Complete()
     {

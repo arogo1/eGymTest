@@ -27,6 +27,7 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IDietService, DietService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<ITrainingService, TraningService>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
 
 //DAL
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -37,6 +38,7 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IDietRepository, DietRepository>();
 builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 builder.Services.AddScoped<ITrainingRepository, TrainingRepository>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddDbContext<DataBaseContext>(options =>
     options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DataBaseConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)

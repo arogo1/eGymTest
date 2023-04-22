@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using eGym.Domain;
+﻿using eGym.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace eGym.DAL;
@@ -18,5 +17,6 @@ public class DataBaseContext : DbContext
     public DbSet<Reservation> Reservation { get; set; }
     public DbSet<Training> Training { get; set; }
     public DbSet<Feedback> Feedback { get; set; }
+    public DbSet<Service> Service { get; set; }
 }
 

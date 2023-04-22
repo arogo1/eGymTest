@@ -47,5 +47,11 @@ public class Mapper : Profile
         CreateMap<CreateTrainingRequest, Training>();
         CreateMap<UpdateTrainingRequest, TrainingDTO>()
             .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+        CreateMap<ServiceDTO, Service>();
+        CreateMap<Service, ServiceDTO>();
+        CreateMap<CreateServiceRequest, Service>();
+        CreateMap<UpdateServiceRequest, ServiceDTO>()
+            .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
     }
 }
