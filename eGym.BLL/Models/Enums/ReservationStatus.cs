@@ -5,6 +5,7 @@ public enum ReservationStatus
 {
 	Pending = 1,
 	Confirmed,
+	Paid,
 	Declined
 }
 

@@ -18,5 +18,7 @@ public class DataBaseContext : DbContext
     public DbSet<Training> Training { get; set; }
     public DbSet<Feedback> Feedback { get; set; }
     public DbSet<Service> Service { get; set; }
+    public DbSet<Card> Card { get; set; }
+    public DbSet<Customer> Customer { get; set; }
 }
 

@@ -4,7 +4,7 @@ namespace eGym.BLL.Models;
 
 public class ReservationDTO
 {
-    public int ResevationId { get; set; }
+    public int ReservationId { get; set; }
     public DateTime From { get; set; }
     public DateTime To { get; set; }
     public string? Description { get; set; }

@@ -16,6 +16,8 @@ public class UnitOfWork : IUnitOfWork
         Reservations = new ReservationRepository(_context);
         Payments = new PaymentRepository(_context);
         Trainings = new TrainingRepository(_context);
+        Customers = new CustomerRepository(_context);
+        Cards = new CardRepository(_context);
     }
 
     public IAccountRepository Accounts { get; private set; }
@@ -26,6 +28,8 @@ public class UnitOfWork : IUnitOfWork
     public IPaymentRepository Payments { get; private set; }
     public ITrainingRepository Trainings { get; private set; }
     public IServiceRepository Services { get; private set; }
+    public ICardRepository Cards { get; private set; }
+    public ICustomerRepository Customers { get; private set; }
 
     public int Complete()
     {

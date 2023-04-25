@@ -42,6 +42,11 @@ public class Mapper : Profile
 
         CreateMap<PaymentRequest, Payment>();
 
+        CreateMap<Models.Requests.Card, Domain.Card>();
+        CreateMap<Domain.Card, Models.Requests.Card>();
+
+        CreateMap<CustomerRequest, Customer>();
+
         CreateMap<TrainingDTO, Training>();
         CreateMap<Training, TrainingDTO>();
         CreateMap<CreateTrainingRequest, Training>();

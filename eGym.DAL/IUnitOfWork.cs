@@ -10,6 +10,8 @@ public interface IUnitOfWork : IDisposable
     IPaymentRepository Payments { get; }
     ITrainingRepository Trainings { get; }
     IServiceRepository Services { get; }
+    ICustomerRepository Customers { get; }
+    ICardRepository Cards { get; }
 
     int Complete();
 }

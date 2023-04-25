@@ -1,26 +1,21 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace eGym.BLL.Models.Requests;
 
 public class PaymentRequest
 {
-    [Required(ErrorMessage = "You have to provide Card Number")]
-    public string CardNumber { get; set; }
+    public string Description { get; set; }
 
-    [Required(ErrorMessage = "You have to provide Expire Date")]
-    public DateTime ExpireDate { get; set; }
+    public string ReceiptEmail { get; set; }
 
-    [Required(ErrorMessage = "You have to provide CCV")]
     public int CCV { get; set; }
 
-    [Required(ErrorMessage = "You have to provide Card holder name")]
-    public string CardHolderName { get; set; }
+    public string Currency { get; set; }
 
-    [Required(ErrorMessage = "You have to provide Amount")]
-    public double Amount { get; set; }
+    public long Amount { get; set; }
 
-    [Required(ErrorMessage = "You have to provide Accoount id")]
-    public int AccountId { get; set; }
+    public string CustomerId { get; set; }
+
+    public int ReservationId { get; set; }
 }
 

@@ -10,6 +10,7 @@
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Stripe.net" Version="41.13.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,4 +18,11 @@
     <ProjectReference Include="..\eGym.Domain\eGym.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Stripe.net" />
+    <None Remove="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
 </Project>

@@ -7,16 +7,20 @@ public class Payment
 {
     public int PaymentId { get; set; }
 
-    public string CardNumber { get; set; }
+    public string Description { get; set; }
 
-    public DateTime ExpireDate { get; set; }
+    public string ReceiptEmail { get; set; }
 
     public int CCV { get; set; }
 
-    public string CardHolderName { get; set; }
+    public string Currency { get; set; }
 
-    public double Amount { get; set; }
+    public long Amount { get; set; }
 
-    public int AccountId { get; set; }
+    public string CustomerId { get; set; }
+    public Customer? Customer { get; set; }
+
+    public int ReservationId { get; set; }
+    public Reservation Reservation { get; set; }
 }
 

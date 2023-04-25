@@ -12,6 +12,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Stripe.net" Version="41.13.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,5 +26,6 @@
 
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
+    <None Remove="Stripe.net" />
   </ItemGroup>
 </Project>

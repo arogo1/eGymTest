@@ -11,10 +11,16 @@ namespace eGym.WebAPI.Controllers;
 public class PaymentController : ControllerBase
 {
     private readonly IPaymentService _paymentService;
+    private readonly IAccountService _accountService;
+    private readonly IReservationService _reservationService;
 
-    public PaymentController(IPaymentService paymentService)
+    public PaymentController(IPaymentService paymentService,
+        IAccountService accountService,
+        IReservationService reservationService)
     {
         _paymentService = paymentService;
+        _accountService = accountService;
+        _reservationService = reservationService;
     }
 
     [HttpGet]
@@ -58,13 +64,40 @@ public class PaymentController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(PaymentRequest request)
+    [Route("addCustomer")]
+    public async Task<IActionResult> CreateCustomer([FromBody] CustomerRequest request, CancellationToken ct)
     {
         try
         {
-            await _paymentService.Create(request);
+            if(await _accountService.GetById(request.AccountId) == null)
+            {
+                return BadRequest("Account with provided Id doesn't exist");
+            }
 
-            return Accepted();
+            var response = await _paymentService.AddCustomer(request, ct);
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    [HttpPost]
+    [Route("addPayment")]
+    public async Task<IActionResult> CreatePayment([FromBody] PaymentRequest request, CancellationToken ct)
+    {
+        try
+        {
+            if(await _reservationService.GetById(request.ReservationId) == null)
+            {
+                return BadRequest("Reservation with provided id doesn't exist");
+            }
+
+            var response = await _paymentService.AddPayment(request, ct);
+
+            return Ok(response);
         }
         catch (Exception ex)
         {

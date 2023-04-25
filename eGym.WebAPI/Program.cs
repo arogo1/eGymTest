@@ -8,10 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using eGym.BLL.Security;
 using Microsoft.AspNetCore.Authentication;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,7 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //BLL
-builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IAccountService, eGym.BLL.Implementation.AccountService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IFeedbackService, FeedbackService>();
@@ -28,6 +31,9 @@ builder.Services.AddScoped<IDietService, DietService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<ITrainingService, TraningService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<ChargeService>();
+builder.Services.AddScoped<TokenService>();
 
 //DAL
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
