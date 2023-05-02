@@ -17,10 +17,10 @@ public class Payment
 
     public long Amount { get; set; }
 
-    public string CustomerId { get; set; }
+    public int CustomerId { get; set; }
     public Customer? Customer { get; set; }
 
-    public int ReservationId { get; set; }
-    public Reservation Reservation { get; set; }
+    public int? ReservationId { get; set; }
+    public Reservation? Reservation { get; set; }
 }
 

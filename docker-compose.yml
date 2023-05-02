@@ -6,10 +6,10 @@ services:
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=QWElkj132!
+      - SA_PASSWORD=QWElkj132!
       - MSSQL_PID=Developer
     ports:
-      - 1433
+      - 1401:1433
     expose:
         - 1433
     networks:
@@ -20,7 +20,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=egym-sql,1433;Database=egymDB;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+      - ConnectionStrings:DataBaseConnection=Server=egym-sql,1433;Database=egymDB;User=sa;Password=QWElkj132!;ConnectRetryCount=0;Encrypt=False
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5192:5192

@@ -73,7 +73,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var dbcontext = scope.ServiceProvider.GetRequiredService<DataBaseContext>();
-    dbcontext.Database.EnsureCreated();
+    dbcontext.Database.Migrate();
 }
 
 app.Run();

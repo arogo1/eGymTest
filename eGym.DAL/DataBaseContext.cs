@@ -21,5 +21,10 @@ public partial class DataBaseContext : DbContext
     public DbSet<Card> Card { get; set; }
     public DbSet<Customer> Customer { get; set; }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        OnModelCreatingPartial(modelBuilder);
+    }
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

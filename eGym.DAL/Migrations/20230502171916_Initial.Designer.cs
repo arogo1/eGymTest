@@ -12,8 +12,8 @@ using eGym.DAL;
 namespace eGym.DAL.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20230502141510_Seed")]
-    partial class Seed
+    [Migration("20230502171916_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,19 @@ namespace eGym.DAL.Migrations
                     b.HasKey("AccountId");
 
                     b.ToTable("Account");
+
+                    b.HasData(
+                        new
+                        {
+                            AccountId = 1,
+                            BirthDate = new DateTime(2023, 5, 2, 19, 19, 15, 964, DateTimeKind.Local).AddTicks(5042),
+                            FirstName = "user",
+                            Gender = 1,
+                            LastName = "user",
+                            Password = "test",
+                            Role = 2,
+                            Username = "user"
+                        });
                 });
 
             modelBuilder.Entity("eGym.Domain.Card", b =>
@@ -190,6 +203,41 @@ namespace eGym.DAL.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("Employee");
+
+                    b.HasData(
+                        new
+                        {
+                            EmployeeId = 1,
+                            BirthDate = new DateTime(2023, 5, 2, 19, 19, 15, 964, DateTimeKind.Local).AddTicks(5172),
+                            FirstName = "desktop",
+                            Gender = 1,
+                            LastName = "desktop",
+                            Password = "test",
+                            Role = 0,
+                            Username = "desktop"
+                        },
+                        new
+                        {
+                            EmployeeId = 2,
+                            BirthDate = new DateTime(2023, 5, 2, 19, 19, 15, 964, DateTimeKind.Local).AddTicks(5176),
+                            FirstName = "mobile",
+                            Gender = 1,
+                            LastName = "mobile",
+                            Password = "test",
+                            Role = 0,
+                            Username = "mobile"
+                        },
+                        new
+                        {
+                            EmployeeId = 3,
+                            BirthDate = new DateTime(2023, 5, 2, 19, 19, 15, 964, DateTimeKind.Local).AddTicks(5178),
+                            FirstName = "employee",
+                            Gender = 1,
+                            LastName = "employee",
+                            Password = "test",
+                            Role = 1,
+                            Username = "employee"
+                        });
                 });
 
             modelBuilder.Entity("eGym.Domain.Feedback", b =>
@@ -240,11 +288,7 @@ namespace eGym.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CustomerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CustomerId1")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -255,12 +299,12 @@ namespace eGym.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReservationId")
+                    b.Property<int?>("ReservationId")
                         .HasColumnType("int");
 
                     b.HasKey("PaymentId");
 
-                    b.HasIndex("CustomerId1");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ReservationId");
 
@@ -391,13 +435,13 @@ namespace eGym.DAL.Migrations
                 {
                     b.HasOne("eGym.Domain.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId1");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("eGym.Domain.Reservation", "Reservation")
                         .WithMany()
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReservationId");
 
                     b.Navigation("Customer");
 
