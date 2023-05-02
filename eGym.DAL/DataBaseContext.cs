@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eGym.DAL;
 
-public class DataBaseContext : DbContext
+public partial class DataBaseContext : DbContext
 {
     public DataBaseContext(DbContextOptions<DataBaseContext> options)
     : base(options)
@@ -20,5 +20,6 @@ public class DataBaseContext : DbContext
     public DbSet<Service> Service { get; set; }
     public DbSet<Card> Card { get; set; }
     public DbSet<Customer> Customer { get; set; }
-}
 
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+}
