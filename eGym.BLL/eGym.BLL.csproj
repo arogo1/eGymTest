@@ -11,6 +11,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Stripe.net" Version="41.13.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +22,8 @@
   <ItemGroup>
     <None Remove="Stripe.net" />
     <None Remove="Exceptions\" />
+    <None Remove="iTextSharp.LGPLv2.Core" />
+    <None Remove="iTextSharp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

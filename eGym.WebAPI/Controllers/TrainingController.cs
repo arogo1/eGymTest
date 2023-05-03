@@ -9,15 +9,16 @@ namespace eGym.WebAPI.Controllers;
 
 [Authorize]
 [ApiController]
-[Route("controller")]
+[Route("[controller]")]
 public class TrainingController : ControllerBase
 {
     private readonly ITrainingService _trainingService;
     private readonly IAccountService _accountService;
 
-    public TrainingController(ITrainingService trainingService)
+    public TrainingController(ITrainingService trainingService, IAccountService accountService)
     {
         _trainingService = trainingService;
+        _accountService = accountService;
     }
 
     [HttpGet]

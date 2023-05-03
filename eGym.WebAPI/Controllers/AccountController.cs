@@ -104,7 +104,28 @@ public class AccountController : ControllerBase
         {
             throw ex;
         }
-        
+    }
+
+    [HttpPost]
+    [Route("/login")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Login(string username, string password)
+    {
+        try
+        {
+            var response = await _accountService.Login(username, password);
+
+            if (response == null)
+            {
+                return BadRequest("Invalid username or password");
+            }
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 }
 

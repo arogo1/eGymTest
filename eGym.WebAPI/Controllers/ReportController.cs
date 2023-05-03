@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using eGym.BLL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
@@ -8,25 +9,59 @@ namespace eGym.WebAPI.Controllers;
 [Route("[controller]")]
 public class ReportController : ControllerBase
 {
+    private readonly IReportService _reportService;
+
+    public ReportController(IReportService reportService)
+    {
+        _reportService = reportService;
+    }
+
     [Route("finance")]
     [HttpGet]
-    public IActionResult GetFinancialReport(DateTime from, DateTime to)
+    public async Task<IActionResult> GetFinancialReport()
     {
-        return Ok();
+        try
+        {
+            var file = await _reportService.GetFinanceReport();
+
+            return File(file, "application/pdf");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 
     [Route("employees")]
     [HttpGet]
-    public IActionResult GetEmployeesReport(DateTime from, DateTime to)
+    public async Task<IActionResult> GetEmployeesReport()
     {
-        return Ok();
+        try
+        {
+            var file = await _reportService.GetEmployeeReport();
+
+            return File(file, "application/pdf");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 
     [Route("users")]
     [HttpGet]
-    public IActionResult GetUsersReport(DateTime from, DateTime to)
+    public async Task<IActionResult> GetUsersReport(DateTime from, DateTime to)
     {
-        return Ok();
+        try
+        {
+            var file = await _reportService.GetUserReport();
+
+            return File(file, "application/pdf");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 }
 

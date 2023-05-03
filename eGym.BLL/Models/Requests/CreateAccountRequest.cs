@@ -23,6 +23,9 @@ public class CreateAccountRequest
     [EmailAddress]
     public string Email { get; set; }
 
+    [Required(ErrorMessage = "You have to provide gender")]
+    public Gender Gender { get; set; }
+
     public DateTime BirthDate { get; set; }
 }
 
