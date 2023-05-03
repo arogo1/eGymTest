@@ -27,6 +27,9 @@ public class CreateEmployeeRequest
     [Required(ErrorMessage = "You have to provide role")]
     public Role Role { get; set; }
 
+    [Required(ErrorMessage = "You have to provide gender")]
+    public Gender Gender { get; set; }
+
     public DateTime BirthDate { get; set; }
 }
 
