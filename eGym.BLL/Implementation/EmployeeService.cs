@@ -54,5 +54,26 @@ public class EmployeeService : IEmployeeService
         }
         return null;
     }
+
+    public async Task<List<EmployeeActivity>> GetEmployeeActivity(int employeeId)
+    {
+        var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId));
+        var groupedDictionary = result
+        .GroupBy(x => new { MonthYear = x.From.Month + "-" + x.From.Year })
+        .ToDictionary(g => g.Key, g => g.Count());
+
+        var response = new List<EmployeeActivity>();
+
+        foreach(var x in groupedDictionary)
+        {
+            response.Add(new EmployeeActivity()
+            {
+                Date = x.Key.ToString(),
+                NumberOfReservation = x.Value
+            });
+        }
+
+        return response;
+    }
 }
 

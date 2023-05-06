@@ -58,6 +58,23 @@ public class EmployeeController : ControllerBase
         }
     }
 
+    [HttpGet]
+    [Authorize(Roles = "Admin,Employee,User")]
+    [Route("activity")]
+    public async Task<IActionResult> GetEmployeeActivity(int employeeId)
+    {
+        try
+        {
+            var response = await _employeeService.GetEmployeeActivity(employeeId);
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     [HttpDelete]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
