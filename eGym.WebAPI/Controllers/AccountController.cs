@@ -107,7 +107,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost]
-    [Route("/login")]
+    [Route("/loginn")]
     [AllowAnonymous]
     public async Task<IActionResult> Login(string username, string password)
     {
