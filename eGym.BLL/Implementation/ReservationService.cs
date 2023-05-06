@@ -47,9 +47,12 @@ public class ReservationService : IReservationService
         return _mapper.Map<List<ReservationDTO>>(result);
     }
 
-    public async Task<List<ReservationDTO>> GetByEmployee(int employeeId)
+    public async Task<List<ReservationDTO>> GetByEmployee(int employeeId, DateTime date)
     {
-        var result = await _unitOfWork.Reservations.GetWhere(x => x.AccountId.Equals(employeeId));
+        var nesto = await _unitOfWork.Reservations.GetAll();
+        var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId));
+        if (result != null && result.Any())
+            result = result.Where(x => x.From.ToShortDateString().Equals(date.ToShortDateString()));
         return _mapper.Map<List<ReservationDTO>>(result);
     }
 

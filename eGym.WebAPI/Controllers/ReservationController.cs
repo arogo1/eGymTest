@@ -69,7 +69,7 @@ public class ReservationController : ControllerBase
 
     [HttpGet]
     [Route("GetByEmployee")]
-    public async Task<IActionResult> GetByEmployee(int employeeId)
+    public async Task<IActionResult> GetByEmployee(int employeeId, DateTime date)
     {
         try
         {
@@ -78,7 +78,7 @@ public class ReservationController : ControllerBase
                 return BadRequest("Invalid id");
             }
 
-            var response = await _reservationService.GetByEmployee(employeeId);
+            var response = await _reservationService.GetByEmployee(employeeId, date);
 
             return Ok(response);
         }
@@ -87,6 +87,8 @@ public class ReservationController : ControllerBase
             throw ex;
         }
     }
+
+
 
     [HttpDelete]
     public async Task<IActionResult> Delete(int id)

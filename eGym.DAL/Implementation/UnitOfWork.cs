@@ -18,6 +18,7 @@ public class UnitOfWork : IUnitOfWork
         Trainings = new TrainingRepository(_context);
         Customers = new CustomerRepository(_context);
         Cards = new CardRepository(_context);
+        Services = new ServiceRepository(_context);
     }
 
     public IAccountRepository Accounts { get; private set; }
