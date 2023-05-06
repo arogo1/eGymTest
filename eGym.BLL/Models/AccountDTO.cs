@@ -11,6 +11,7 @@ public class AccountDTO
     public string? Password { get; set; }
     public string? Email { get; set; }
     public Role Role { get; set; } = Role.User;
+    public Gender Gender { get; set; }
     public DateTime BirthDate { get; set; }
 
 }
