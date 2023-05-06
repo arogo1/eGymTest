@@ -25,6 +25,12 @@ public class AccountService : IAccountService
         return _mapper.Map<AccountDTO>(result);
 	}
 
+    public async Task<List<AccountDTO>> GetAll()
+    {
+        var result = await _unitOfWork.Accounts.GetAll();
+        return _mapper.Map<List<AccountDTO>>(result);
+    }
+
     public async Task Delete(int id)
     {
         await _unitOfWork.Accounts.Delete(id);

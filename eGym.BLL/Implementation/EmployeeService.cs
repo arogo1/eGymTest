@@ -39,6 +39,12 @@ public class EmployeeService : IEmployeeService
         return _mapper.Map<EmployeeDTO>(result);
     }
 
+    public async Task<List<EmployeeDTO>> GetAll()
+    {
+        var result = await _unitOfWork.Employees.GetAll();
+        return _mapper.Map<List<EmployeeDTO>>(result);
+    }
+
     public async Task<EmployeeDTO> Login(string username, string password)
     {
         var result = await _unitOfWork.Employees.GetWhere(x => x.Username.Equals(username) && x.Password.Equals(password));

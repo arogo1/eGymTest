@@ -6,6 +6,7 @@ namespace eGym.BLL;
 public interface IAccountService
 {
     public Task<AccountDTO> GetById(int id);
+    public Task<List<AccountDTO>> GetAll();
     public Task Delete(int id);
     public Task Create(CreateAccountRequest request);
     public Task Update(UpdateAccountRequest request, AccountDTO account);

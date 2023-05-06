@@ -42,6 +42,22 @@ public class EmployeeController : ControllerBase
         }
     }
 
+    [HttpGet]
+    [Route("getAll")]
+    public async Task<IActionResult> GetAll()
+    {
+        try
+        {
+            var response = await _employeeService.GetAll();
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     [HttpDelete]
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id)
@@ -108,7 +124,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPost]
-    [Route("/login")]
+    [Route("login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login(string username, string password)
     {
