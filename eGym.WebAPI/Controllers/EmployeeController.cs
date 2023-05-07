@@ -43,6 +43,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Employee,User")]
     [Route("getAll")]
     public async Task<IActionResult> GetAll()
     {

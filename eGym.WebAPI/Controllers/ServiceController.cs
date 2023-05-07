@@ -24,6 +24,7 @@ public class ServiceController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Employee,User")]
     public async Task<IActionResult> GetById(int id)
     {
         try
@@ -48,6 +49,7 @@ public class ServiceController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Employee,User")]
     [Route("getAll")]
     public async Task<IActionResult> GetAll()
     {
