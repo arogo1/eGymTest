@@ -7,5 +7,6 @@ public class CreateFeedbackRequest
     public int Equipment { get; set; }
     public int ServiceQuality { get; set; }
     public string? Comment { get; set; }
+    public int AccountId { get; set; }
 }
 
