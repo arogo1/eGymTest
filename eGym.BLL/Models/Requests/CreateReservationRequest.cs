@@ -13,6 +13,9 @@ public class CreateReservationRequest
 
     public string? Description { get; set; }
 
+    [Required(ErrorMessage = "You have to provide reservation type")]
+    public ReservationType ReservationType { get; set; }
+
     [Required(ErrorMessage = "You have to provide Account id")]
     public int AccountId { get; set; }
 

@@ -38,22 +38,47 @@ public class ReservationService : IReservationService
     public async Task<ReservationDTO> GetById(int id)
     {
         var result = await _unitOfWork.Reservations.GetById(id);
-        return _mapper.Map<ReservationDTO>(result);
+
+        var employee = await _unitOfWork.Employees.GetById(result.EmployeeId);
+
+        var response = _mapper.Map<ReservationDTO>(result);
+
+        response.EmployeeName = employee.FirstName + " " + employee.LastName;
+
+        return response;
     }
 
     public async Task<List<ReservationDTO>> GetByUser(int userId)
     {
         var result = await _unitOfWork.Reservations.GetWhere(x => x.AccountId.Equals(userId));
-        return _mapper.Map<List<ReservationDTO>>(result);
+        var response = _mapper.Map<List<ReservationDTO>>(result);
+
+        foreach(var x in response)
+        {
+            var employee = await _unitOfWork.Employees.GetById(x.EmployeeId);
+
+            x.EmployeeName = employee.FirstName + " " + employee.LastName;
+        }
+
+        return response;
     }
 
     public async Task<List<ReservationDTO>> GetByEmployee(int employeeId, DateTime date)
     {
-        var nesto = await _unitOfWork.Reservations.GetAll();
         var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId));
         if (result != null && result.Any())
             result = result.Where(x => x.From.ToShortDateString().Equals(date.ToShortDateString()));
-        return _mapper.Map<List<ReservationDTO>>(result);
+
+        var response = _mapper.Map<List<ReservationDTO>>(result);
+
+        foreach (var x in response)
+        {
+            var employee = await _unitOfWork.Employees.GetById(x.EmployeeId);
+
+            x.EmployeeName = employee.FirstName + " " + employee.LastName;
+        }
+
+        return response;
     }
 
     public async Task UpdateStatus(ReservationDTO reservation)
