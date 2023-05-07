@@ -63,6 +63,21 @@ public class ReservationService : IReservationService
         return response;
     }
 
+    public async Task<List<ReservationDTO>> GetNewestByUser(int userId, DateTime date)
+    {
+        var result = await _unitOfWork.Reservations.GetWhere(x => x.AccountId.Equals(userId) && x.From >= date);
+        var response = _mapper.Map<List<ReservationDTO>>(result);
+
+        foreach (var x in response)
+        {
+            var employee = await _unitOfWork.Employees.GetById(x.EmployeeId);
+
+            x.EmployeeName = employee.FirstName + " " + employee.LastName;
+        }
+
+        return response;
+    }
+
     public async Task<List<ReservationDTO>> GetByEmployee(int employeeId, DateTime date)
     {
         var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId));

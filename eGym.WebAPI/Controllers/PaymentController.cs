@@ -24,12 +24,18 @@ public class PaymentController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetWhere()
+    public async Task<IActionResult> CheckCustomerProfile(int accountId)
     {
         try
         {
-            
-            return Ok();
+            if (accountId <= 0)
+            {
+                return BadRequest("Invalid Account Id");
+            }
+
+            var response = await _paymentService.CheckUserProfile(accountId);
+
+            return Ok(response);
         }
         catch (Exception ex)
         {

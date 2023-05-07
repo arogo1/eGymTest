@@ -28,21 +28,6 @@ public class PaymentService : IPaymentService
         _tokenService = tokenService;
     }
 
-    public async Task Delete(int id)
-    {
-
-    }
-
-    public async Task Update()
-    {
-
-    }
-
-    public async Task GetById(int id)
-    {
-
-    }
-
     public async Task<Stripe.Customer> AddCustomer(CustomerRequest customer, CancellationToken ct)
     {
         //Check does account already has customer profile
@@ -122,6 +107,13 @@ public class PaymentService : IPaymentService
         await _unitOfWork.Reservations.Update(reservation);
 
         return response;
+    }
+
+    public async Task<Domain.Customer> CheckUserProfile(int accountId)
+    {
+        var response = await _unitOfWork.Customers.GetWhere(x => x.AccountId.Equals(accountId));
+
+        return response.ToList().FirstOrDefault();
     }
 }
 

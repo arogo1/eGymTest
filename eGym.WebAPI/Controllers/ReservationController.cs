@@ -68,6 +68,27 @@ public class ReservationController : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetNewestByUser")]
+    public async Task<IActionResult> GetNewestByUser(int userId, DateTime date)
+    {
+        try
+        {
+            if (userId < 0)
+            {
+                return BadRequest("Invalid id");
+            }
+
+            var response = await _reservationService.GetNewestByUser(userId, date);
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    [HttpGet]
     [Route("GetByEmployee")]
     public async Task<IActionResult> GetByEmployee(int employeeId, DateTime date)
     {
