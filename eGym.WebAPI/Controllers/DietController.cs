@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
-[Authorize(Roles = "Employee")]
 [ApiController]
 [Route("[controller]")]
 public class DietController : ControllerBase
@@ -20,6 +19,7 @@ public class DietController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Employee,User")]
     public async Task<IActionResult> GetById(int id)
     {
         try
@@ -46,6 +46,7 @@ public class DietController : ControllerBase
 
     [HttpGet]
     [Route("getByUserId")]
+    [Authorize(Roles = "Employee,User")]
     public async Task<IActionResult> GetByUserId(int userId)
     {
         try
@@ -71,6 +72,7 @@ public class DietController : ControllerBase
     }
 
     [HttpDelete]
+    [Authorize(Roles = "Employee")]
     public async Task<IActionResult> Delete(int id)
     {
         try
@@ -91,6 +93,7 @@ public class DietController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "Employee")]
     public async Task<IActionResult> Update([FromBody] UpdateDietRequest request, int dietId)
     {
         try
@@ -113,6 +116,7 @@ public class DietController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Employee")]
     public async Task<IActionResult> Create([FromBody] CreateDietRequest request)
     {
         try

@@ -1,12 +1,10 @@
 ﻿using eGym.BLL;
-using eGym.BLL.Implementation;
 using eGym.BLL.Models.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.WebAPI.Controllers;
 
-[Authorize(Roles = "Admin,Employee")]
 [ApiController]
 [Route("[controller]")]
 public class EmployeeController : ControllerBase
@@ -19,6 +17,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Admin,Employee")]
     public async Task<IActionResult> GetById(int id)
     {
         try
@@ -105,6 +104,7 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPut]
+    [Authorize(Roles = "Admin,Employee")]
     public async Task<IActionResult> Update([FromBody] UpdateAccountRequest request, int id)
     {
         try
