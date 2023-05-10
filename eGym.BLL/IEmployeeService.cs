@@ -7,6 +7,7 @@ public interface IEmployeeService
 {
     public Task<EmployeeDTO> GetById(int id);
     public Task<List<EmployeeDTO>> GetAll();
+    public Task<List<EmployeeDTO>> Search(string text);
     public Task<List<EmployeeActivity>> GetEmployeeActivity(int employeeId);
     public Task Delete(int id);
     public Task Create(CreateEmployeeRequest request);

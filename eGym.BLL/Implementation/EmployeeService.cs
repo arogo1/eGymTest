@@ -75,5 +75,11 @@ public class EmployeeService : IEmployeeService
 
         return response;
     }
+
+    public async Task<List<EmployeeDTO>> Search(string text)
+    {
+        var result = await _unitOfWork.Employees.GetWhere(x => x.FirstName.Contains(text) || x.LastName.Contains(text));
+        return _mapper.Map<List<EmployeeDTO>>(result);
+    }
 }
 
