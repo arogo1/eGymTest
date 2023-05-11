@@ -100,7 +100,20 @@ public class PaymentService : IPaymentService
 
         var response = await _chargeService.CreateAsync(paymentOptions, null, ct);
 
-        await _unitOfWork.Payments.Insert(_mapper.Map<Payment>(payment));
+        var customer = await _unitOfWork.Customers.GetWhere(x => x.StripeCustomerId.Equals(payment.CustomerId));
+
+        var internalPayment = new Payment()
+        {
+            Description = payment.Description,
+            ReceiptEmail = payment.ReceiptEmail,
+            CCV = payment.CCV,
+            Currency = payment.Currency,
+            Amount = payment.Amount,
+            CustomerId = customer.FirstOrDefault().CustomerId,
+            ReservationId = payment.ReservationId
+        };
+
+        await _unitOfWork.Payments.Insert(internalPayment);
 
         reservation.Status = 3;
 
