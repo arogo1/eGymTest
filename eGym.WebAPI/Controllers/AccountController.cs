@@ -1,4 +1,5 @@
 ﻿using eGym.BLL;
+using eGym.BLL.Implementation;
 using eGym.BLL.Models.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +49,23 @@ public class AccountController : ControllerBase
         try
         {
             var response = await _accountService.GetAll();
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    [HttpGet]
+    [Authorize(Roles = "Admin,Employee,User")]
+    [Route("search")]
+    public async Task<IActionResult> Search(string text)
+    {
+        try
+        {
+            var response = await _accountService.Search(text);
 
             return Ok(response);
         }

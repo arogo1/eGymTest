@@ -3,11 +3,11 @@ using eGym.BLL.Models.Requests;
 
 namespace eGym.UI.Desktop
 {
-    public partial class frmCreateEmployee : Form
+    public partial class frmCreateAccount : Form
     {
-        private readonly APIService _service = new APIService("Employee");
+        private readonly APIService _service = new APIService("Account");
 
-        public frmCreateEmployee()
+        public frmCreateAccount()
         {
             InitializeComponent();
         }
@@ -16,14 +16,13 @@ namespace eGym.UI.Desktop
         {
             try
             {
-                var request = new CreateEmployeeRequest
+                var request = new CreateAccountRequest
                 {
                     FirstName = txtName.Text,
                     LastName = txtLastName.Text,
                     Username = txtUsername.Text,
                     Password = txtPassword.Text,
                     BirthDate = dateTimePicker1.Value.Date,
-                    Role = (BLL.Models.Enums.Role)cbRole.SelectedIndex,
                     Email = txtEmail.Text
                 };
 
@@ -36,10 +35,10 @@ namespace eGym.UI.Desktop
                     request.Gender = BLL.Models.Enums.Gender.Male;
                 }
 
-                await _service.Post<EmployeeDTO>(request);
+                await _service.Post<AccountDTO>(request);
                 this.Close();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Something went wrong");
             }

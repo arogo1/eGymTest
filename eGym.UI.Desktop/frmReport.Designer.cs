@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnFinance = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnFinance
+            // 
+            this.btnFinance.Location = new System.Drawing.Point(139, 56);
+            this.btnFinance.Name = "btnFinance";
+            this.btnFinance.Size = new System.Drawing.Size(100, 31);
+            this.btnFinance.TabIndex = 0;
+            this.btnFinance.Text = "Finansije";
+            this.btnFinance.UseVisualStyleBackColor = true;
+            this.btnFinance.Click += new System.EventHandler(this.btnFinance_Click);
+            // 
+            // frmReport
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnFinance);
+            this.Name = "frmReport";
             this.Text = "frmIzvjestaji";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Button btnFinance;
     }
 }

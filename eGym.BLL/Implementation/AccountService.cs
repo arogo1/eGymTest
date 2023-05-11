@@ -58,5 +58,11 @@ public class AccountService : IAccountService
         }
         return null;
     }
+
+    public async Task<List<AccountDTO>> Search(string text)
+    {
+        var result = await _unitOfWork.Accounts.GetWhere(x => x.FirstName.Contains(text) || x.LastName.Contains(text));
+        return _mapper.Map<List<AccountDTO>>(result);
+    }
 }
 

@@ -1,4 +1,5 @@
 ﻿using eGym.BLL.Models;
+using eGym.BLL.Models.Requests;
 
 namespace eGym.UI.Desktop
 {
@@ -14,29 +15,63 @@ namespace eGym.UI.Desktop
 
         private async void frmEmployee_Load(object sender, EventArgs e)
         {
-            dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(null, "/getAll");
+            try
+            {
+                dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(null, "/getAll");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(new { text = txtSearch.Text}, "/search");
+            try
+            {
+                dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(new { text = txtSearch.Text }, "/search");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
 
         private async void btnDelete_Click(object sender, EventArgs e)
         {
-            await _service.Delete(selectedEmployee.EmployeeId);
+            try
+            {
+                await _service.Delete(new { id = selectedEmployee.EmployeeId });
+
+                dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(null, "/getAll");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            await _service.Put<EmployeeDTO>(selectedEmployee.EmployeeId, null);
-        }
+            try
+            {
+                var request = new UpdateAccountRequest()
+                {
+                    FirstName = txtName.Text,
+                    LastName = txtLastName.Text,
+                    BirthDate = dateTimePicker1.Value,
+                    Username = txtUsername.Text,
+                    Password = txtPassword.Text
+                };
 
-        private void dgvKorisinici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var item = dgvEmployee.SelectedRows[0].DataBoundItem as EmployeeDTO;
+                await _service.Put<EmployeeDTO>(selectedEmployee.EmployeeId, request);
 
-            selectedEmployee = item;
+                dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(null, "/getAll");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
 
         private void btnCreateEmployee_Click(object sender, EventArgs e)

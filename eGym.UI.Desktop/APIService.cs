@@ -71,6 +71,27 @@ namespace eGym.UI.Desktop
             }
         }
 
+        public async Task Get(string path)
+        {
+            try
+            {
+                var result = await $"{_endpoint}{_resource}/{path}".WithBasicAuth(Username, Password).GetAsync();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //return default;
+            }
+        }
+
         public async Task<T> Get<T>(object search = null, string path = "")
         {
             var query = "";
@@ -93,7 +114,7 @@ namespace eGym.UI.Desktop
 
         public async Task<T> Put<T>(object id, object request)
         {
-            var result = await $"{_endpoint}{_resource}/{id}".WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
+            var result = await $"{_endpoint}{_resource}?id={id}".WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
 
             return result;
         }
@@ -102,7 +123,7 @@ namespace eGym.UI.Desktop
         {
             var query =  await id.ToQueryString();
 
-            var result = await $"{_endpoint}{_resource}{query}".WithBasicAuth(Username, Password).DeleteAsync();
+            var result = await $"{_endpoint}{_resource}?{query}".WithBasicAuth(Username, Password).DeleteAsync();
         }
     }
 }
