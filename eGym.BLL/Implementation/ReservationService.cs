@@ -100,5 +100,19 @@ public class ReservationService : IReservationService
     {
         await _unitOfWork.Reservations.Update(_mapper.Map<Reservation>(reservation));
     }
-}
 
+    public async Task<List<ReservationDTO>> GetPendingReservations(int employeeId)
+    {
+        var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId) && x.Status == 1);
+        var response = _mapper.Map<List<ReservationDTO>>(result);
+
+        foreach (var x in response)
+        {
+            var employee = await _unitOfWork.Employees.GetById(x.EmployeeId);
+
+            x.EmployeeName = employee.FirstName + " " + employee.LastName;
+        }
+
+        return response;
+    }
+}

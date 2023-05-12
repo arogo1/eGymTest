@@ -35,18 +35,44 @@ public class FeedbackService : IFeedbackService
     public async Task<FeedbackDTO> GetById(int id)
     {
         var result = await _unitOfWork.Feedbacks.GetById(id);
-        return _mapper.Map<FeedbackDTO>(result);
+
+        var user = await _unitOfWork.Accounts.GetById(result.AccountId);
+
+        var response = _mapper.Map<FeedbackDTO>(result);
+        response.Username = user.Username;
+
+        return response;
     }
 
     public async Task<List<FeedbackDTO>> GetAll()
     {
-        var response = await _unitOfWork.Feedbacks.GetAll();
-        return _mapper.Map<List<FeedbackDTO>>(response);
+        var result = await _unitOfWork.Feedbacks.GetAll();
+
+        var response = _mapper.Map<List<FeedbackDTO>>(result);
+
+        foreach(var x in response)
+        {
+            var user = await _unitOfWork.Accounts.GetById(x.AccountId);
+
+            x.Username = user.Username;
+        }
+
+        return response;
     }
 
     public async Task<List<FeedbackDTO>> GetByUser(int userId)
     {
-        var response = await _unitOfWork.Feedbacks.GetWhere(x => x.AccountId.Equals(userId));
-        return _mapper.Map<List<FeedbackDTO>>(response);
+        var result = await _unitOfWork.Feedbacks.GetWhere(x => x.AccountId.Equals(userId));
+
+        var response = _mapper.Map<List<FeedbackDTO>>(result);
+
+        foreach (var x in response)
+        {
+            var user = await _unitOfWork.Accounts.GetById(x.AccountId);
+
+            x.Username = user.Username;
+        }
+
+        return response;
     }
 }

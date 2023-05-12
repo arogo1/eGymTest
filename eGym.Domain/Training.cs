@@ -4,7 +4,6 @@ public class Training
 {
     public int TrainingId { get; set; }
     public int Day { get; set; }
-    public int Meal { get; set; }
     public string? Description { get; set; }
 
     public int AccountId { get; set; }

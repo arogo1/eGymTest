@@ -109,7 +109,26 @@ public class ReservationController : ControllerBase
         }
     }
 
+    [HttpGet]
+    [Route("GetPendingReservation")]
+    public async Task<IActionResult> GetPendingReservation(int employeeId)
+    {
+        try
+        {
+            if (employeeId < 0)
+            {
+                return BadRequest("Invalid id");
+            }
 
+            var response = await _reservationService.GetPendingReservations(employeeId);
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     [HttpDelete]
     public async Task<IActionResult> Delete(int id)

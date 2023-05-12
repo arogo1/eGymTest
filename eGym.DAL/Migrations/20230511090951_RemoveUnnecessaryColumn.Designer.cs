@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eGym.DAL;
 
@@ -11,9 +12,11 @@ using eGym.DAL;
 namespace eGym.DAL.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230511090951_RemoveUnnecessaryColumn")]
+    partial class RemoveUnnecessaryColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +69,7 @@ namespace eGym.DAL.Migrations
                         new
                         {
                             AccountId = 1,
-                            BirthDate = new DateTime(2023, 5, 7, 22, 45, 50, 748, DateTimeKind.Local).AddTicks(6230),
+                            BirthDate = new DateTime(2023, 5, 11, 11, 9, 51, 651, DateTimeKind.Local).AddTicks(2736),
                             Email = "user@test.com",
                             FirstName = "user",
                             Gender = 1,
@@ -212,7 +215,7 @@ namespace eGym.DAL.Migrations
                         new
                         {
                             EmployeeId = 1,
-                            BirthDate = new DateTime(2023, 5, 7, 22, 45, 50, 748, DateTimeKind.Local).AddTicks(6360),
+                            BirthDate = new DateTime(2023, 5, 11, 11, 9, 51, 651, DateTimeKind.Local).AddTicks(2886),
                             Email = "desktop@test.com",
                             FirstName = "desktop",
                             Gender = 1,
@@ -224,7 +227,7 @@ namespace eGym.DAL.Migrations
                         new
                         {
                             EmployeeId = 2,
-                            BirthDate = new DateTime(2023, 5, 7, 22, 45, 50, 748, DateTimeKind.Local).AddTicks(6370),
+                            BirthDate = new DateTime(2023, 5, 11, 11, 9, 51, 651, DateTimeKind.Local).AddTicks(2890),
                             Email = "mobile@test.com",
                             FirstName = "mobile",
                             Gender = 1,
@@ -236,7 +239,7 @@ namespace eGym.DAL.Migrations
                         new
                         {
                             EmployeeId = 3,
-                            BirthDate = new DateTime(2023, 5, 7, 22, 45, 50, 748, DateTimeKind.Local).AddTicks(6380),
+                            BirthDate = new DateTime(2023, 5, 11, 11, 9, 51, 651, DateTimeKind.Local).AddTicks(2892),
                             Email = "employee@test.com",
                             FirstName = "employee",
                             Gender = 1,
@@ -365,14 +368,6 @@ namespace eGym.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"));
 
                     b.Property<string>("Descritption")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

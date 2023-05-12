@@ -2,6 +2,8 @@
 
 public class CreateServiceRequest
 {
-	public string Description { get; set; } = string.Empty;
+	public string Descritption { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
+    public string Picture { get; set; } = string.Empty;
 }
 
