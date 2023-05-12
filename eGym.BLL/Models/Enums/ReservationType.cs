@@ -1,5 +1,4 @@
-﻿using System;
-namespace eGym.BLL.Models.Enums;
+﻿namespace eGym.BLL.Models.Enums;
 
 public enum ReservationType
 {

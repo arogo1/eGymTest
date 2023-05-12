@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using eGym.BLL.Models.Enums;
+﻿using eGym.BLL.Models.Enums;
 
 namespace eGym.BLL.Models.Requests;
 
