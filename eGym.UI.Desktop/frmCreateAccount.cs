@@ -36,6 +36,7 @@ namespace eGym.UI.Desktop
                 }
 
                 await _service.Post<AccountDTO>(request);
+                MessageBox.Show("Uspjesno krairan korisnik");
                 this.Close();
             }
             catch (Exception ex)

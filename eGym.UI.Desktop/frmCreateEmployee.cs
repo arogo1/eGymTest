@@ -37,6 +37,7 @@ namespace eGym.UI.Desktop
                 }
 
                 await _service.Post<EmployeeDTO>(request);
+                MessageBox.Show("Uspjesno krairan uposlenik");
                 this.Close();
             }
             catch(Exception ex) 

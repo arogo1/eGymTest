@@ -102,7 +102,7 @@ public class ReportService : IReportService
 
             document.Open();
 
-            Paragraph p1 = new Paragraph("Izvjestaj zaposlenih", new Font(Font.FontFamily.TIMES_ROMAN, 20));
+            Paragraph p1 = new Paragraph("Izvjestaj finansije", new Font(Font.FontFamily.TIMES_ROMAN, 20));
             p1.Alignment = Element.ALIGN_CENTER;
             document.Add(p1);
 
@@ -143,10 +143,6 @@ public class ReportService : IReportService
             cell7.VerticalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell7);
 
-            document.Add(table);
-            document.Close();
-            writer.Close();
-
             foreach (var payment in result)
             {
                 PdfPCell cell_1 = new PdfPCell(new Phrase(payment.PaymentId.ToString(), new Font(Font.FontFamily.TIMES_ROMAN, 10)));
@@ -185,6 +181,10 @@ public class ReportService : IReportService
                 table.AddCell(cell_7);
             }
 
+            document.Add(table);
+            document.Close();
+            writer.Close();
+
             return ms.ToArray();
         }
     }
@@ -200,7 +200,7 @@ public class ReportService : IReportService
 
             document.Open();
 
-            Paragraph p1 = new Paragraph("Izvjestaj zaposlenih", new Font(Font.FontFamily.TIMES_ROMAN, 20));
+            Paragraph p1 = new Paragraph("Izvjestaj korisnika", new Font(Font.FontFamily.TIMES_ROMAN, 20));
             p1.Alignment = Element.ALIGN_CENTER;
             document.Add(p1);
 

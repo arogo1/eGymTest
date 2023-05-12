@@ -111,7 +111,7 @@ public class ReservationController : ControllerBase
 
     [HttpGet]
     [Route("GetPendingReservation")]
-    public async Task<IActionResult> GetPendingReservation(int employeeId)
+    public async Task<IActionResult> GetPendingReservation(int employeeId, DateTime date)
     {
         try
         {
@@ -120,7 +120,7 @@ public class ReservationController : ControllerBase
                 return BadRequest("Invalid id");
             }
 
-            var response = await _reservationService.GetPendingReservations(employeeId);
+            var response = await _reservationService.GetPendingReservations(employeeId, date);
 
             return Ok(response);
         }

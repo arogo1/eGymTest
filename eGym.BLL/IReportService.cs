@@ -1,7 +1,4 @@
-﻿using System;
-using eGym.BLL.Models;
-
-namespace eGym.BLL;
+﻿namespace eGym.BLL;
 
 public interface IReportService
 {

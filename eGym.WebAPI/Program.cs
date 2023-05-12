@@ -54,6 +54,22 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAuthentication("BasicAuthentication")
               .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
+
+builder.Services.AddHttpClient("PdfDomain", client => {
+    client.BaseAddress = new Uri("https://localhost:7220/");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

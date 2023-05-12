@@ -14,7 +14,6 @@ namespace eGym.UI.Desktop
 
         public static string Username = null;
         public static string Password = null;
-        public static EmployeeDTO currentUser;
 
         public APIService(string resource)
         {
@@ -71,6 +70,34 @@ namespace eGym.UI.Desktop
             }
         }
 
+        public async Task<T> Post<T>(object request, string path = "")
+        {
+            try
+            {
+                var query = "";
+                if (request != null)
+                {
+                    query = await request.ToQueryString();
+                }
+
+                var result = await $"{_endpoint}{_resource}{path}?{query}".WithBasicAuth(Username, Password).PostAsync().ReceiveJson<T>();
+                return result;
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
+        }
+
         public async Task Get(string path)
         {
             try
@@ -105,9 +132,9 @@ namespace eGym.UI.Desktop
             return list;
         }
 
-        public async Task<T> GetById<T>(object id)
+        public async Task<T> GetById<T>(int id)
         {
-            var result = await $"{_endpoint}{_resource}/{id}".WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            var result = await $"{_endpoint}{_resource}?id={id}".WithBasicAuth(Username, Password).GetJsonAsync<T>();
 
             return result;
         }
@@ -115,6 +142,13 @@ namespace eGym.UI.Desktop
         public async Task<T> Put<T>(object id, object request)
         {
             var result = await $"{_endpoint}{_resource}?id={id}".WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
+
+            return result;
+        }
+
+        public async Task<T> Put<T>(object id, string path = "")
+        {
+            var result = await $"{_endpoint}{_resource}{path}?reservationId={id}".WithBasicAuth(Username, Password).PutAsync().ReceiveJson<T>();
 
             return result;
         }

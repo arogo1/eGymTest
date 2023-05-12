@@ -44,6 +44,8 @@ namespace eGym.UI.Desktop
                 await _service.Delete(new { id = selectedEmployee.EmployeeId });
 
                 dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(null, "/getAll");
+
+                MessageBox.Show("Uspjesno obirsan uposlenik");
             }
             catch(Exception ex)
             {
@@ -67,6 +69,8 @@ namespace eGym.UI.Desktop
                 await _service.Put<EmployeeDTO>(selectedEmployee.EmployeeId, request);
 
                 dgvEmployee.DataSource = await _service.Get<List<EmployeeDTO>>(null, "/getAll");
+
+                MessageBox.Show("Uspjesno updatevon uposlenik");
             }
             catch(Exception ex)
             {

@@ -65,7 +65,7 @@ public class ReservationService : IReservationService
 
     public async Task<List<ReservationDTO>> GetNewestByUser(int userId, DateTime date)
     {
-        var result = await _unitOfWork.Reservations.GetWhere(x => x.AccountId.Equals(userId) && x.From >= date);
+        var result = await _unitOfWork.Reservations.GetWhere(x => x.AccountId.Equals(userId) && x.From.Date >= date.Date);
         var response = _mapper.Map<List<ReservationDTO>>(result);
 
         foreach (var x in response)
@@ -101,9 +101,9 @@ public class ReservationService : IReservationService
         await _unitOfWork.Reservations.Update(_mapper.Map<Reservation>(reservation));
     }
 
-    public async Task<List<ReservationDTO>> GetPendingReservations(int employeeId)
+    public async Task<List<ReservationDTO>> GetPendingReservations(int employeeId, DateTime date)
     {
-        var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId) && x.Status == 1);
+        var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId) && x.Status == 1 && x.From.Date >= date.Date);
         var response = _mapper.Map<List<ReservationDTO>>(result);
 
         foreach (var x in response)

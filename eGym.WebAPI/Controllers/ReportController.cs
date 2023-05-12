@@ -24,7 +24,7 @@ public class ReportController : ControllerBase
         {
             var file = await _reportService.GetFinanceReport();
 
-            return File(file, "application/pdf");
+            return File(file, "application/pdf", "FinanceReport.pdf");
         }
         catch (Exception ex)
         {

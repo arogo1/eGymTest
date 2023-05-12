@@ -67,6 +67,8 @@ namespace eGym.UI.Desktop
                 await _service.Delete(new { id = selectedUser.AccountId });
 
                 dgvAccount.DataSource = await _service.Get<List<AccountDTO>>(null, "/getAll");
+
+                MessageBox.Show("Uspjesno obrisan korisnik");
             }
             catch(Exception ex)
             {
@@ -90,6 +92,8 @@ namespace eGym.UI.Desktop
                 await _service.Put<AccountDTO>(selectedUser.AccountId, request);
 
                 dgvAccount.DataSource = await _service.Get<List<AccountDTO>>(null, "/getAll");
+
+                MessageBox.Show("Uspjesno updatevon korisnik");
             }
             catch(Exception ex)
             {

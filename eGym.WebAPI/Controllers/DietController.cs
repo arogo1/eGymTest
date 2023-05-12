@@ -94,11 +94,11 @@ public class DietController : ControllerBase
 
     [HttpPut]
     [Authorize(Roles = "Employee")]
-    public async Task<IActionResult> Update([FromBody] UpdateDietRequest request, int dietId)
+    public async Task<IActionResult> Update([FromBody] UpdateDietRequest request, int Id)
     {
         try
         {
-            var diet = await _dietService.GetById(dietId);
+            var diet = await _dietService.GetById(Id);
 
             if (diet == null)
             {

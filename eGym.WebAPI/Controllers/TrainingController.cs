@@ -95,11 +95,11 @@ public class TrainingController : ControllerBase
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(UpdateTrainingRequest request, int trainingId)
+    public async Task<IActionResult> Update(UpdateTrainingRequest request, int id)
     {
         try
         {
-            var training = await _trainingService.GetById(trainingId);
+            var training = await _trainingService.GetById(id);
 
             if (training == null)
             {

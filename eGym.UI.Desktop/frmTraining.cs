@@ -43,14 +43,15 @@ namespace eGym.UI.Desktop
         {
             try
             {
-                var request = new CreateTrainingRequest()
+                var request = new UpdateTrainingRequest()
                 {
-                    AccountId = selectedUser.AccountId,
                     Day = (DayOfWeek)cmbDay.SelectedIndex,
                     Description = rtxtDescription.Text
                 };
 
-                await _service.Post<TrainingDTO>(request);
+                await _service.Put<TrainingDTO>(selectedTraining.TrainingId, request);
+
+                MessageBox.Show("Uspjesno updatovan");
             }
             catch (Exception ex)
             {
@@ -58,12 +59,21 @@ namespace eGym.UI.Desktop
             }
         }
 
-        private void dgvAccount_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvAccount_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
             selectedUser = dgvAccount.Rows[index].DataBoundItem as AccountDTO;
 
             txtName.Text = selectedUser.FirstName + " " + selectedUser.LastName;
+
+            try
+            {
+                dgvTraining.DataSource = await _service.Get<List<TrainingDTO>>(new { userId = selectedUser.AccountId }, "/getUserTraningPlan");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
 
         private void dgvTraining_CellClick(object sender, DataGridViewCellEventArgs e)
