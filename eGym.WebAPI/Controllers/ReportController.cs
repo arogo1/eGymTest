@@ -1,4 +1,5 @@
 ﻿using eGym.BLL;
+using eGym.BLL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +19,19 @@ public class ReportController : ControllerBase
 
     [Route("finance")]
     [HttpGet]
-    public async Task<IActionResult> GetFinancialReport()
+    [AllowAnonymous]
+    public async Task<IActionResult> GetFinancialReport(string token)
     {
         try
         {
-            var file = await _reportService.GetFinanceReport();
+            if(token == "RSIIeGym")
+            {
+                var file = await _reportService.GetFinanceReport();
 
-            return File(file, "application/pdf", "FinanceReport.pdf");
+                return File(file, "application/pdf");
+            }
+
+            return Unauthorized();  
         }
         catch (Exception ex)
         {
@@ -34,13 +41,19 @@ public class ReportController : ControllerBase
 
     [Route("employees")]
     [HttpGet]
-    public async Task<IActionResult> GetEmployeesReport()
+    [AllowAnonymous]
+    public async Task<IActionResult> GetEmployeesReport(string token)
     {
         try
         {
-            var file = await _reportService.GetEmployeeReport();
+            if (token == "RSIIeGym")
+            {
+                var file = await _reportService.GetEmployeeReport();
 
-            return File(file, "application/pdf");
+                return File(file, "application/pdf");
+            }
+
+            return Unauthorized();
         }
         catch (Exception ex)
         {
@@ -50,13 +63,33 @@ public class ReportController : ControllerBase
 
     [Route("users")]
     [HttpGet]
-    public async Task<IActionResult> GetUsersReport(DateTime from, DateTime to)
+    [AllowAnonymous]
+    public async Task<IActionResult> GetUsersReport(string token)
     {
         try
         {
-            var file = await _reportService.GetUserReport();
+            if (token == "RSIIeGym")
+            {
+                var file = await _reportService.GetUserReport();
 
-            return File(file, "application/pdf");
+                return File(file, "application/pdf");
+            }
+
+            return Unauthorized();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    [Route("token")]
+    [HttpGet]
+    public async Task<IActionResult> GetToken()
+    {
+        try
+        {
+            return Ok(new Token { Key = "RSIIeGym" });
         }
         catch (Exception ex)
         {

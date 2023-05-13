@@ -1,8 +1,4 @@
-﻿using eGym.BLL.Models;
-using Flurl.Http;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System.Globalization;
+﻿using Flurl.Http;
 using System.Text;
 
 namespace eGym.UI.Desktop
@@ -10,7 +6,7 @@ namespace eGym.UI.Desktop
     public class APIService
     {
         private string _resource = null;
-        public string _endpoint = "https://localhost:7220/";
+        public static string _endpoint = "https://localhost:7220/";
 
         public static string Username = null;
         public static string Password = null;

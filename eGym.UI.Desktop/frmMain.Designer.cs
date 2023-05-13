@@ -92,8 +92,8 @@
             // izjestajiToolStripMenuItem
             // 
             this.izjestajiToolStripMenuItem.Name = "izjestajiToolStripMenuItem";
-            this.izjestajiToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
-            this.izjestajiToolStripMenuItem.Text = "Izjestaji";
+            this.izjestajiToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.izjestajiToolStripMenuItem.Text = "Izvjestaji";
             this.izjestajiToolStripMenuItem.Click += new System.EventHandler(this.izjestajiToolStripMenuItem_Click);
             // 
             // frmMain
