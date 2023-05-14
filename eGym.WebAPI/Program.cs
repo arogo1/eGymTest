@@ -31,6 +31,7 @@ builder.Services.AddScoped<IDietService, DietService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<ITrainingService, TraningService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
+builder.Services.AddScoped<IRecommendationService, RecommendationService>();
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<ChargeService>();
 builder.Services.AddScoped<TokenService>();
