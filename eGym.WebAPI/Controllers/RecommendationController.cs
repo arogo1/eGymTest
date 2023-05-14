@@ -16,11 +16,11 @@ public class RecommendationController : ControllerBase
         _recommendationService = recommendationService;
     }
 
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> Get(int accountId)
     {
         try
         {
-            var response = await _recommendationService.Get();
+            var response = await _recommendationService.Get(accountId);
 
             return Ok(response);
         }
