@@ -1,4 +1,5 @@
 ﻿using eGym.BLL.Models;
+using eGym.BLL.Models.Enums;
 using eGym.DAL;
 
 namespace eGym.BLL.Implementation;
@@ -20,14 +21,39 @@ public class RecommendationService : IRecommendationService
 
         if (accountReservations.Any())
         {
+            var reservations = await _unitOfWork.Reservations.GetWhere(x => x.AccountId.Equals(accountId));
+
+            //Add recommendations for most reserved reservation type and most reserved employee
+            var reservationType = reservations.GroupBy(x => x.ReservationType).OrderByDescending(t => t.Count()).FirstOrDefault().Key;
+            var employeeId = reservations.GroupBy(x => x.EmployeeId).OrderByDescending(t => t.Count()).FirstOrDefault().Key;
+
+            recommendations.Add(new Recommendation()
+            {
+                EmployeeId = employeeId,
+                ReservationType = (ReservationType)reservationType
+            });
+
+            //add recommendation for employee that is most reserved by reservation type that user use the most
+            var allReservation = await _unitOfWork.Reservations.GetAll();
+
+            recommendations.Add(new Recommendation()
+            {
+                EmployeeId = allReservation.Where(x => x.ReservationType.Equals(reservationType)).GroupBy(x => x.EmployeeId).OrderByDescending(g => g.Count()).FirstOrDefault().Key,
+                ReservationType = (ReservationType)reservationType
+            });
         }
         else
         {
             var reservations = await _unitOfWork.Reservations.GetAll();
 
-            reservations.Where(x => x.ReservationType == 0).OrderBy(x => x.EmployeeId);
-
-            //recommendations.Add(new Recommendation() {  })
+            for(int i = 0; i < 4; i++)
+            {
+                recommendations.Add(new Recommendation()
+                {
+                    EmployeeId = reservations.Where(x => x.ReservationType == i).GroupBy(x => x.EmployeeId).OrderByDescending(g => g.Count()).FirstOrDefault().Key,
+                    ReservationType = (ReservationType)i
+                });
+            }
         }
 
         return recommendations;

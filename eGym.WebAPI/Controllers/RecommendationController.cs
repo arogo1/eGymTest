@@ -16,6 +16,7 @@ public class RecommendationController : ControllerBase
         _recommendationService = recommendationService;
     }
 
+    [HttpGet]
     public async Task<IActionResult> Get(int accountId)
     {
         try
