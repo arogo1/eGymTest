@@ -115,4 +115,19 @@ public class ReservationService : IReservationService
 
         return response;
     }
+
+    public async Task<List<ReservationDTO>> GetPaidReservations(int employeeId, DateTime date)
+    {
+        var result = await _unitOfWork.Reservations.GetWhere(x => x.EmployeeId.Equals(employeeId) && x.Status == 3 && x.From.Date == date.Date);
+        var response = _mapper.Map<List<ReservationDTO>>(result);
+
+        foreach (var x in response)
+        {
+            var employee = await _unitOfWork.Employees.GetById(x.EmployeeId);
+
+            x.EmployeeName = employee.FirstName + " " + employee.LastName;
+        }
+
+        return response;
+    }
 }

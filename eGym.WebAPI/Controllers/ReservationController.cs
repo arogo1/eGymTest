@@ -130,6 +130,27 @@ public class ReservationController : ControllerBase
         }
     }
 
+    [HttpGet]
+    [Route("GetPaidReservation")]
+    public async Task<IActionResult> GetPaidReservation(int employeeId, DateTime date)
+    {
+        try
+        {
+            if (employeeId < 0)
+            {
+                return BadRequest("Invalid id");
+            }
+
+            var response = await _reservationService.GetPaidReservations(employeeId, date);
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
     [HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {

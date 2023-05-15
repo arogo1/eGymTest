@@ -44,5 +44,11 @@
             frmReport frm = new frmReport();   
             frm.Show();
         }
+
+        private void pregledRasporedaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReservationsOverview frm = new frmReservationsOverview();
+            frm.Show(); 
+        }
     }
 }

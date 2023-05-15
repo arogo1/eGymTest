@@ -35,6 +35,7 @@
             this.planTreningaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zahtjevZaTerminimaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izjestajiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pregledRasporedaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +48,7 @@
             this.planIshraneToolStripMenuItem,
             this.planTreningaToolStripMenuItem,
             this.zahtjevZaTerminimaToolStripMenuItem,
+            this.pregledRasporedaToolStripMenuItem,
             this.izjestajiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -96,6 +98,13 @@
             this.izjestajiToolStripMenuItem.Text = "Izvjestaji";
             this.izjestajiToolStripMenuItem.Click += new System.EventHandler(this.izjestajiToolStripMenuItem_Click);
             // 
+            // pregledRasporedaToolStripMenuItem
+            // 
+            this.pregledRasporedaToolStripMenuItem.Name = "pregledRasporedaToolStripMenuItem";
+            this.pregledRasporedaToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.pregledRasporedaToolStripMenuItem.Text = "Pregled rasporeda";
+            this.pregledRasporedaToolStripMenuItem.Click += new System.EventHandler(this.pregledRasporedaToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -121,5 +130,6 @@
         private ToolStripMenuItem planTreningaToolStripMenuItem;
         private ToolStripMenuItem zahtjevZaTerminimaToolStripMenuItem;
         private ToolStripMenuItem izjestajiToolStripMenuItem;
+        private ToolStripMenuItem pregledRasporedaToolStripMenuItem;
     }
 }
