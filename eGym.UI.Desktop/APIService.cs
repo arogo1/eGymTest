@@ -6,7 +6,7 @@ namespace eGym.UI.Desktop
     public class APIService
     {
         private string _resource = null;
-        public static string _endpoint = "https://localhost:7220/";
+        public static string _endpoint = "https://localhost:5192/";
 
         public static string Username = null;
         public static string Password = null;

@@ -24,7 +24,7 @@ namespace eGym.UI.Desktop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show("Desila se greska");
             }
         }
 
@@ -46,7 +46,7 @@ namespace eGym.UI.Desktop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show("Desila se greska");
             }
         }
 
@@ -67,7 +67,7 @@ namespace eGym.UI.Desktop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show("Desila se greska");
             }
         }
     }
