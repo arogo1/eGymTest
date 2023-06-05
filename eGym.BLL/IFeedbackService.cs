@@ -5,6 +5,7 @@ namespace eGym.BLL;
 
 public interface IFeedbackService
 {
+
     public Task<FeedbackDTO> GetById(int id);
     public Task Delete(int id);
     public Task Create(CreateFeedbackRequest request);
