@@ -94,7 +94,8 @@ public partial class DataBaseContext
         new Reservation() { ReservationId = 7, From = new DateTime(2023, 05, 11, 13, 00, 00), To = new DateTime(2023, 05, 11, 14, 15, 00), Description = "I would like to do full-body workouts. ", Status = 1, AccountId = 3, EmployeeId = 10, ReservationType = 1 },
         new Reservation() { ReservationId = 8, From = new DateTime(2023, 05, 12, 16, 00, 00), To = new DateTime(2023, 05, 12, 17, 15, 00), Description = "I would like to do pilates training.", Status = 4, AccountId = 8, EmployeeId = 9, ReservationType = 3 },
         new Reservation() { ReservationId = 9, From = new DateTime(2023, 05, 12, 20, 00, 00), To = new DateTime(2023, 05, 12, 21, 15, 00), Description = "I would like to do balance and stability training.", Status = 3, AccountId = 7, EmployeeId = 6, ReservationType = 3 },
-        new Reservation() { ReservationId = 10, From = new DateTime(2023, 05, 13, 13, 00, 00), To = new DateTime(2023, 05, 13, 14, 15, 00), Description = "I would like to do flexibility and mobility Training.", Status = 3, AccountId = 5, EmployeeId = 1, ReservationType = 2 }
+        new Reservation() { ReservationId = 10, From = new DateTime(2023, 05, 13, 13, 00, 00), To = new DateTime(2023, 05, 13, 14, 15, 00), Description = "I would like to do flexibility and mobility Training.", Status = 3, AccountId = 5, EmployeeId = 1, ReservationType = 2 },
+        new Reservation() { ReservationId = 10, From = DateTime.Now, To =DateTime.Now.AddHours(1), Description = "I would like to do flexibility and mobility Training.", Status = 3, AccountId = 5, EmployeeId = 1, ReservationType = 2 }
        );
 
     }

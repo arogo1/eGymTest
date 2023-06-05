@@ -21,24 +21,13 @@ public class RecommendationService : IRecommendationService
 
         if (accountReservations.Any())
         {
-            var reservations = await _unitOfWork.Reservations.GetWhere(x => x.AccountId.Equals(accountId));
-
             //Add recommendations for most reserved reservation type and most reserved employee
-            var reservationType = reservations.GroupBy(x => x.ReservationType).OrderByDescending(t => t.Count()).FirstOrDefault().Key;
-            var employeeId = reservations.GroupBy(x => x.EmployeeId).OrderByDescending(t => t.Count()).FirstOrDefault().Key;
+            var reservationType = accountReservations.GroupBy(x => x.ReservationType).OrderByDescending(t => t.Count()).FirstOrDefault().Key;
+            var employeeId = accountReservations.GroupBy(x => x.EmployeeId).OrderByDescending(t => t.Count()).FirstOrDefault().Key;
 
             recommendations.Add(new Recommendation()
             {
                 EmployeeId = employeeId,
-                ReservationType = (ReservationType)reservationType
-            });
-
-            //add recommendation for employee that is most reserved by reservation type that user use the most
-            var allReservation = await _unitOfWork.Reservations.GetAll();
-
-            recommendations.Add(new Recommendation()
-            {
-                EmployeeId = allReservation.Where(x => x.ReservationType.Equals(reservationType)).GroupBy(x => x.EmployeeId).OrderByDescending(g => g.Count()).FirstOrDefault().Key,
                 ReservationType = (ReservationType)reservationType
             });
         }

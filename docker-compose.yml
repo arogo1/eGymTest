@@ -20,7 +20,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DataBaseConnection=Server=egym-sql,1433;Database=egymDB;User=sa;Password=QWElkj132!;ConnectRetryCount=0;Encrypt=False
+      - ConnectionStrings:DataBaseConnection=Server=egym-sql,1433;Database=210420;User=sa;Password=QWElkj132!;ConnectRetryCount=0;Encrypt=False
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5192:5192
