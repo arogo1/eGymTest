@@ -5,6 +5,7 @@ namespace eGym.BLL;
 
 public interface IServiceService
 {
+
     public Task<ServiceDTO> GetById(int id);
     public Task<List<ServiceDTO>> GetAll();
     public Task Delete(int id);
